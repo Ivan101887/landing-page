@@ -1,0 +1,212 @@
+@charset "utf-8";
+/* -----reset----- */
+body {
+  font: 16px, "Arial", "Helvetica", "微軟正黑體", "sans-serif";
+}
+/* -----Layout----- */
+.header {
+  width: 100%;
+  padding: 15px;
+  position: absolute;
+  top: 0;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+.banner {
+  position: relative;
+  width: 100vw;
+  overflow: hidden;
+}
+.carousel {
+  height: 80vh;
+  box-sizing: border-box;
+  transition: all 1.5s ease-in-out;
+}
+.logo {
+  z-index: 1;
+}
+.nav {
+  z-index: 1;
+  font-size: 1rem;
+  color: #24B4D7;
+}
+.intro {
+  position: absolute;
+  padding-top: 110px;
+  padding-bottom: 110px;
+  top: 27%;
+  left: 30%;
+  width: 728px;
+  /* height: 412px; */
+  color: #24B4D7;
+  font-weight: 600;
+  text-align: center;
+  background-image: repeating-linear-gradient( 
+    -45deg, 
+    transparent, 
+    transparent 2.5px, 
+    rgba(222, 231, 237, .2) 2.5px, 
+    rgba(222, 231, 237, .2) 5px
+  );
+  box-sizing: border-box;
+}
+.count {
+  position: relative;
+  top: -30px;
+  justify-content: center;
+  color: #fff;
+}
+/* .main {
+
+} */
+/* .footer {
+
+} */
+/* -----module----- */
+.logo__img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.nav__item + .nav__item {
+  margin-left: 18px;
+}
+.carousel__img {
+  display: block;
+  min-width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.intro__tit {
+  font-size: 4.3rem;
+  padding-top: 1.4rem;
+  padding-bottom: 1.4rem;
+}
+.intro::before {
+  content: "F2E 前端開發";
+  font-size: 2rem;
+}
+.intro::after {
+  content: "學會，百萬年薪不是夢";
+  font-size: 2rem;
+  display: block;
+  padding-top: 2rem;
+}
+.count__tit {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+.count__num {
+  font-size: 1.25rem;
+  margin-bottom: 15px;
+}
+.count__link {
+  display: block;
+}
+.item {
+    position: relative;
+    width: 80px;
+    top: 30px;
+    left: -10px;
+    height: 5px;
+    background-color: #ddd;
+}
+.item-lg {
+  width: 150px;
+}
+
+.item__head,
+.item__foot,
+.item__start {
+    font-size: .7rem;
+}
+
+.item__head,
+.item__foot {
+    position: relative;
+    left: 45%;
+    bottom: 25px;
+}
+
+.item__start {
+    position: absolute;
+    top: 20px;
+    left: -19px;
+}
+
+.item__bar {
+    z-index: 0;
+    width: 0;
+    height: 5px;
+    background-color: #015F8F;
+    margin-top: 14px;
+    margin-bottom: 13px;
+    position: relative;
+    bottom: 50px;
+}
+
+.item:first-child::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: 0;
+    z-index: 1;
+    width: 15px;
+    height: 15px;
+    margin-top: -3px;
+    background-color: #fff;
+    border: 4px solid #ddd;
+    border-radius: 50%;
+    box-sizing: border-box;
+}
+
+.item::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    right: 0;
+    z-index: 1;
+    width: 15px;
+    height: 15px;
+    margin-top: -3px;
+    background-color: #fff;
+    border: 4px solid #ddd;
+    border-radius: 50%;
+    box-sizing: border-box;
+}
+
+/* -----helper----- */
+.container {
+  max-width: 1200px;
+}
+.mx-auto {
+  margin-right: auto;
+  margin-left: auto;
+}
+.block {
+  padding: 22px 45px;
+  text-align: center;
+}
+.block + .block {
+  margin-left: 30px;
+}
+.block-info {
+  background-color: #24B4D7;
+}
+.block-light {
+  background-color: #4DC4E1;
+}
+.block-purple {
+  background-color: #918EEC;
+}
+.d-flex {
+  display: flex;
+}
+.btn {
+  padding: 12px 28px;
+  border-radius: 5px;
+}
+.btn-white {
+  background-color: #fff;
+}
