@@ -71,7 +71,7 @@
         </section>
         <section class="count__foot block block-purple">
           <p class="count__amount">已有 <strong class="count__num">70</strong> 人報名</p>
-          <a href="" class="count__link btn btn-white mx-auto">搶先報名 &raquo;</a>
+          <a href="javascript:;" class="count__link btn btn-white mx-auto">搶先報名 &raquo;</a>
         </section>
       </div>
     </div>
@@ -93,9 +93,15 @@
             <figure class="desc__media media-lg">
               <img class="desc__img" src="./images/media_talk.jpg" alt="media__talk" width="1920" height="1097">
             </figure>
-            <figure class="desc__media media-sm">
-              <img class="desc__img" src="./images/media_video.jpg" alt="media__video" width="1880" height="945">
-            </figure>
+            <a href="https://www.youtube.com/watch?v=syFyL9tONRA" class="desc__link">
+              <figure class="desc__media media-sm">
+                <img class="desc__img" src="./images/media_video.jpg" alt="media__video" width="1880" height="945">
+              </figure>
+            </a>
+            <div class="modal">
+              <iframe class="modal__media" src="https://www.youtube.com/embed/syFyL9tONRA" frameborder="0" width="640"
+                height="360" allowfullscreen allow-modals></iframe>
+            </div>
             <a href="javascript:;" class="desc__link mx-auto btn btn-md btn-peace">我想了解更多 &raquo;</a>
           </div>
         </section>
@@ -105,15 +111,220 @@
           <h3 class="course__title mx-auto">想要培養一技之長，成為前端工程師嗎？</h3>
           <section class="course__intro">
             <p class="course__subTitle mx-auto">第一階段</p>
-            <div class="cardSet">
-              <div class="card">
-                <div class="wrap">
-                  
+            <div class="cardSet d-flex">
+              <div class="wrap">
+                <div class="card">
+                  <figure class="card__imgContainer">
+                    <img src="./images/card01.jpg" alt="" class="card__img">
+                  </figure>
+                  <div class="card__content">
+                    <p class="card__tag">第一週</p>
+                    <h2 class="card__title">程式規劃基礎</h2>
+                    <p class="card__desc">組合語言的描述、分析、設計技巧</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card__arrow">&raquo;</div>
+              <div class="wrap">
+                <div class="card">
+                  <figure class="card__imgContainer">
+                    <img src="./images/card02.jpg" alt="" class="card__img">
+                  </figure>
+                  <div class="card__content">
+                    <p class="card__tag">第二週</p>
+                    <h2 class="card__title">物件導向程式設計</h2>
+                    <p class="card__desc">具有物件概念的程式設計典範，同時也是一種程式開發的抽象方針。</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card__arrow">&raquo;</div>
+              <div class="wrap" >
+                <div class="card">
+                  <figure class="card__imgContainer">
+                    <img src="./images/card02.png" alt="" class="card__img">
+                  </figure>
+                  <div class="card__content">
+                    <p class="card__tag">第三週</p>
+                    <h2 class="card__title">資料結構與演算法</h2>
+                    <p class="card__desc">了解資料結構，之後在程式的設計上才能更加熟練應該要使用何種資料結構。</p>
+                  </div>
                 </div>
               </div>
             </div>
           </section>
+          <section class="course__intro">
+            <p class="course__subTitle mx-auto">第二階段</p>
+            <div class="cardSet d-flex">
+              <div class="wrap">
+                <div class="card">
+                  <figure class="card__imgContainer">
+                    <img src="./images/card04.png" alt="" class="card__img">
+                  </figure>
+                  <div class="card__content">
+                    <p class="card__tag">第四週</p>
+                    <h2 class="card__title">各領域語言與框架介紹</h2>
+                    <p class="card__desc">框架以應用為目的，結合了多數常用的元件所形成的初始主體架構。</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card__arrow">&raquo;</div>
+              <div class="wrap">
+                <div class="card">
+                  <figure class="card__imgContainer">
+                    <img src="./images/card05.png" alt="" class="card__img">
+                  </figure>
+                  <div class="card__content">
+                    <p class="card__tag">第五週</p>
+                    <h2 class="card__title">版控與開源觀念</h2>
+                    <p class="card__desc">版本控制是維護工程藍圖的標準作法，能追蹤工程藍圖從誕生一直到定案的過程。</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card__arrow">&raquo;</div>
+              <div class="wrap">
+                <div class="card">
+                  <figure class="card__imgContainer">
+                    <img src="./images/card06.jpg" alt="" class="card__img">
+                  </figure>
+                  <div class="card__content">
+                    <p class="card__tag">第六週</p>
+                    <h2 class="card__title">專題規劃技巧</h2>
+                    <p class="card__desc">解決問題、蒐集資料、實務應用、團隊合作、知識整合與表達能力。</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card__arrow">&raquo;</div>
+              <div class="wrap" >
+                <div class="card">
+                  <figure class="card__imgContainer">
+                    <img src="./images/card07.jpg" alt="" class="card__img">
+                  </figure>
+                  <div class="card__content">
+                    <p class="card__tag">第七週</p>
+                    <h2 class="card__title">專題實作與進度追蹤</h2>
+                    <p class="card__desc">制定規則、剷除阻礙，觀察運作流程，發掘可能的問題，進一步優化流程，讓團隊協作得更順暢。</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card__arrow">&raquo;</div>
+              <div class="wrap" >
+                <div class="card">
+                  <figure class="card__imgContainer">
+                    <img src="./images/card08.jpg" alt="" class="card__img">
+                  </figure>
+                  <div class="card__content">
+                    <p class="card__tag">第八週</p>
+                    <h2 class="card__title">專題成果發表</h2>
+                    <p class="card__desc">在這七週學習以來的第一次成果發表，讓大家看到您耀眼的存在!</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="course__intro">
+            <p class="course__subTitle mx-auto">第三階段</p>
+            <div class="cardSet d-flex">
+              <div class="wrap">
+                <div class="card">
+                  <figure class="card__imgContainer">
+                    <img src="./images/card09.png" alt="" class="card__img">
+                  </figure>
+                  <div class="card__content">
+                    <p class="card__tag">第九週</p>
+                    <h2 class="card__title">進程與執行緒</h2>
+                    <p class="card__desc">進程、線程是一定要搞懂與掌握的知識點，可以增進程式的執行效率。</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card__arrow">&raquo;</div>
+              <div class="wrap">
+                <div class="card">
+                  <figure class="card__imgContainer">
+                    <img src="./images/card10.png" alt="" class="card__img">
+                  </figure>
+                  <div class="card__content">
+                    <p class="card__tag">第十週</p>
+                    <h2 class="card__title">網際網路概論</h2>
+                    <p class="card__desc">全新實用網路新知，完整介紹網路與資料通訊的相關主題與技術。</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card__arrow">&raquo;</div>
+              <div class="wrap">
+                <div class="card">
+                  <figure class="card__imgContainer">
+                    <img src="./images/card11.png" alt="" class="card__img">
+                  </figure>
+                  <div class="card__content">
+                    <p class="card__tag">第十一週</p>
+                    <h2 class="card__title">各領域進階語法</h2>
+                    <p class="card__desc">了解前端領域符合業界使用的進階技巧，並快速辨別使用的領域，加速開發。</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card__arrow">&raquo;</div>
+              <div class="wrap" >
+                <div class="card">
+                  <figure class="card__imgContainer">
+                    <img src="./images/card12.png" alt="" class="card__img">
+                  </figure>
+                  <div class="card__content">
+                    <p class="card__tag">第十二週</p>
+                    <h2 class="card__title">近代網頁前端的生態演化</h2>
+                    <p class="card__desc">了解網頁前端的前世今生與愛恨糾葛，讓你知道前端技術為什麼這麼火?</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="course__intro">
+            <p class="course__subTitle mx-auto">第二階段</p>
+            <div class="cardSet d-flex">
+              <div class="wrap">
+                <div class="card">
+                  <figure class="card__imgContainer">
+                    <img src="./images/card13.png" alt="" class="card__img">
+                  </figure>
+                  <div class="card__content">
+                    <p class="card__tag">第十三週</p>
+                    <h2 class="card__title">一起來 Vue 出前端的世界</h2>
+                    <p class="card__desc">建立使用者介面的開源 JavaScript 框架，也是一個建立單頁應用的 Web 應用框架。</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card__arrow">&raquo;</div>
+              <div class="wrap">
+                <div class="card">
+                  <figure class="card__imgContainer">
+                    <img src="./images/card14.png" alt="" class="card__img">
+                  </figure>
+                  <div class="card__content">
+                    <p class="card__tag">第十四週</p>
+                    <h2 class="card__title">第一次使用 Node 就上手</h2>
+                    <p class="card__desc">能夠在伺服器端運行 JavaScript 的開放原始碼、跨平台執行環境。</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card__arrow">&raquo;</div>
+              <div class="wrap">
+                <div class="card">
+                  <figure class="card__imgContainer">
+                    <img src="./images/card15.png" alt="" class="card__img">
+                  </figure>
+                  <div class="card__content">
+                    <p class="card__tag">第十五週</p>
+                    <h2 class="card__title">專題成果發表</h2>
+                    <p class="card__desc">藉由第二次的成果發表，聯合各廠商來媒合專業人才，讓您結業即就業。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a href="javascript:;" class="course__link mx-auto btn btn-white">我有興趣 &raquo;</a>
+          </section>
         </div>
+      </div>
+      <div class="main__foot">
+        
       </div>
     </main>
     <footer class="footer">
