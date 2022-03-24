@@ -17,7 +17,7 @@ function setEvent() {
   window.addEventListener('scroll', handleAnimation);
   document.querySelector('#MediaVideo').addEventListener('click', playVedio);
   elemModal.addEventListener('click', closeModal);
-  window.addEventListener('keyup', console.log(45454));
+  window.addEventListener('keyup', closeModal);
 }
 async function setInit() {
   setArrs();
@@ -31,7 +31,6 @@ async function getData() {
 }
 function render() {
   document.querySelector('#CountNum').textContent = data.personNum;
-  console.log(setProgressStr())
   elemCountLs.innerHTML = setProgressStr();
   let barWidth = setBarWidth();
   elemCountLs.querySelectorAll('.progress').forEach((item, index) => {
@@ -127,7 +126,6 @@ function setBarWidth() {
       data.personNum >= range * (i + 1) ? widthArr.push(1) : widthArr.push((data.personNum - range * i) / range);
     }
   }
-  console.log(widthArr)
   return widthArr;
 }
 function setActState() {
