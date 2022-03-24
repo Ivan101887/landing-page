@@ -11,11 +11,10 @@ body {
   padding: 15px;
   position: fixed;
   top: 0;
-  z-index: 1;
+  z-index: 2;
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
-  transition: all .5s ease-in-out
 }
 .banner {
   overflow: hidden;
@@ -25,10 +24,7 @@ body {
   justify-content: center;
   flex-wrap: wrap;
 }
-.wrap {
-  width: calc(33.3333% - 40px);
-  margin-bottom: 60px;
-}
+
 /* -----logo----- */
 .logo__img {
   display: block;
@@ -132,49 +128,49 @@ body {
   text-decoration: none;
 }
 
-/* -----item----- */
-.item {
+/* -----progress----- */
+.progress {
     position: relative;
     width: 80px;
     top: 35px;
     height: 5px;
     background-color: #ddd;
 }
-.item-lg {
+.progress-lg {
   width: 160px;
 }
 
-.item__head,
-.item__foot,
-.item__start {
+.progress__head,
+.progress__foot,
+.progress__begin {
     font-size: .7rem;
 }
 
-.item__head,
-.item__foot {
+.progress__head,
+.progress__foot {
     position: relative;
     left: 45%;
     bottom: 25px;
 }
 
-.item__start {
+.progress__begin {
     position: absolute;
     top: 20px;
     left: -19px;
 }
 
-.item__bar {
+.progress__bar {
     z-index: 0;
-    width: 0;
     height: 5px;
-    background-color: #015F8F;
+    width: 0;
+    background-color: #22A9CA;
     margin-top: 14px;
     margin-bottom: 13px;
     position: relative;
-    bottom: 50px;
+    bottom: 26px;
 }
 
-.item:first-child::before {
+.progress:first-child::before {
     content: '';
     position: absolute;
     top: -2px;
@@ -189,7 +185,7 @@ body {
     box-sizing: border-box;
 }
 
-.item::after {
+.progress::after {
     content: '';
     position: absolute;
     top: -2px;
@@ -256,6 +252,7 @@ body {
   position: fixed;
   top: 0;bottom: 0;left: 0;right: 0;
   background-color: #000000c5;
+  z-index: 2;
   display: none;
 }
 .modal__media {
@@ -278,7 +275,7 @@ body {
 }
 .course__intro {
   margin-top: 72px;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 .course__subTitle {
   width: fit-content;
@@ -297,11 +294,43 @@ body {
   background-color: #000;
   box-sizing: border-box;
 }
+.course__link {
+  display: block;
+  color: #24B4D7;
+  text-decoration: none;
+  margin-bottom: 100px;
+  font-size: 2.2rem;
+}
+/* -----animate----- */
+.animate__title {
+  opacity: 0;
+}
+.animate__item {
+  opacity: 0;
+}
+/* -----wrap----- */
+.wrap {
+  width: 33.3333%;
+  margin-bottom: 60px;
+}
+.wrap + .wrap {
+  display: flex;
+  align-items: center;
+}
+.wrap + .wrap::before {
+  content: "\276D\276D";
+  display: block;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.8rem;
+}
 /* -----card----- */
 .card {
-  width: 100%;
+  width: calc(100% - 40px);
   position: relative;
   background-color: #fff;
+  margin-right: 20px;
+  margin-left: 20px;
 }
 .card__arrow {
   padding-left: 16px;
@@ -336,13 +365,7 @@ body {
   font-weight: 600;
   margin-bottom: 20px;
 }
-.course__link {
-  display: block;
-  margin-top: 50px;
-  color: #24B4D7;
-  text-decoration: none;
-  font-size: 2.2rem;
-}
+
 /* -----effort----- */
 .effort {
   max-width: 1024px;
@@ -462,11 +485,22 @@ body {
   }
 }
 @keyframes slideDown {
-  from {
+  0% {
+    opacity: 0;
     transform: translateY(-50px);
   }
-  to {
+  100% {
+    opacity: 1;
     transform: translateY(0);
+  }
+}
+@keyframes slideUp {
+  0% {
+    transform: translateY(50px);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 .fade {
@@ -484,9 +518,20 @@ body {
 .fade-3 {
   animation-delay: 15s;
 }
-.slide-down {
-  animation: slideDown 1s ease-in-out;
+.js-slide__down {
+  animation: slideDown 1s ease-in 0s both;
 }
+.js-slide__up {
+  animation: slideUp 1s ease-in 0s both;
+}
+
+.js-progress::before,.js-progress::after{
+  border-color: #24B4D7 !important;
+}
+.js-progress .progress__bar {
+  width: 100%;
+}
+
 .media-lg {
   width: 760px;
   top: 0px;
@@ -532,6 +577,7 @@ body {
 .text-bold {
   font-weight: 600;
 }
+
 /* -----RWD----- */
 /* @media screen and (max-width: 1024px) {
   .container {

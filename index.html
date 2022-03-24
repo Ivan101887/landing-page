@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="./favorite.ico" type="image/x-icon">
     <link rel="stylesheet" href="./style/reset.css">
     <link rel="stylesheet" href="./style/index.css">
-    <title>Document</title>
+    <title>F2E前端開發 Landing Page</title>
     <script src="./js/main.js" defer></script>
   </head>
 
@@ -44,34 +44,17 @@
         <section class="count__head block block-info">
           <p class="count__tit">優惠倒數:</p>
           <p class="count__date">
-            <span class="day">1</span> 天
-            <span class="hour">1</span> 時
-            <span class="min">1</span> 分
-            <span class="sec">1</span> 秒
+            <span class="day"></span> 天
+            <span class="hour"></span> 時
+            <span class="min"></span> 分
+            <span class="sec"></span> 秒
           </p>
         </section>
         <section class="count__body block block-light">
-          <ul class="count__list mx-auto d-flex">
-            <li class="count__item item">
-              <p class="item__head mx-auto">達 25 人</p>
-              <p class="item__bar"></p>
-              <p class="item__start">預備開始</p>
-              <p class="item__foot mx-auto">送 Sass</p>
-            </li>
-            <li class="count__item item">
-              <p class="item__head mx-auto">達 50 人</p>
-              <p class="item__bar"></p>
-              <p class="item__foot mx-auto">送 Webpack</p>
-            </li>
-            <li class="count__item item item-lg">
-              <p class="item__head mx-auto">達 100 人</p>
-              <p class="item__bar"></p>
-              <p class="item__foot mx-auto">送 資安課程</p>
-            </li>
-          </ul>
+          <ul class="count__ls mx-auto d-flex" id="CountLs"></ul>
         </section>
         <section class="count__foot block block-purple">
-          <p class="count__amount">已有 <strong class="count__num">70</strong> 人報名</p>
+          <p class="count__amount">已有 <strong class="count__num" id="CountNum"></strong> 人報名</p>
           <a href="javascript:;" class="count__link btn btn-white mx-auto">搶先報名 &raquo;</a>
         </section>
       </div>
@@ -94,13 +77,11 @@
             <figure class="desc__media media-lg">
               <img class="desc__img" src="./images/media_talk.jpg" alt="media__talk" width="1920" height="1097">
             </figure>
-            <a href="https://www.youtube.com/watch?v=syFyL9tONRA" class="desc__link">
-              <figure class="desc__media media-sm">
-                <img class="desc__img" src="./images/media_video.jpg" alt="media__video" width="1880" height="945">
-              </figure>
-            </a>
-            <div class="modal">
-              <iframe class="modal__media" src="https://www.youtube.com/embed/syFyL9tONRA" frameborder="0" width="640"
+            <figure class="desc__media media-sm" id="MediaVideo">
+              <img class="desc__img" src="./images/media_video.jpg" alt="media__video" width="1880" height="945">
+            </figure>
+            <div class="modal" id="Modal">
+              <iframe class="modal__media youtube-video" src="https://www.youtube.com/embed/syFyL9tONRA?enablejsapi=1" frameborder="0" width="640"
                 height="360" allowfullscreen allow-modals></iframe>
             </div>
             <a href="javascript:;" class="desc__link mx-auto btn btn-md btn-peace">我想了解更多 &raquo;</a>
@@ -108,12 +89,12 @@
         </section>
       </div>
       <div class="main__body">
-        <div class="course container mx-auto">
-          <h3 class="course__title mx-auto">想要培養一技之長，成為前端工程師嗎？</h3>
+        <div class="course container mx-auto animate">
+          <h3 class="course__title mx-auto animate__title">想要培養一技之長，成為前端工程師嗎？</h3>
           <section class="course__intro">
-            <p class="course__subTitle mx-auto">第一階段</p>
+            <p class="course__subTitle mx-auto animate__item">第一階段</p>
             <div class="cardSet d-flex">
-              <div class="wrap">
+              <div class="wrap animate__item">
                 <div class="card">
                   <figure class="card__imgContainer">
                     <img src="./images/card01.jpg" alt="" class="card__img">
@@ -125,8 +106,7 @@
                   </div>
                 </div>
               </div>
-              <div class="card__arrow">&raquo;</div>
-              <div class="wrap">
+              <div class="wrap animate__item">
                 <div class="card">
                   <figure class="card__imgContainer">
                     <img src="./images/card02.jpg" alt="" class="card__img">
@@ -138,8 +118,7 @@
                   </div>
                 </div>
               </div>
-              <div class="card__arrow">&raquo;</div>
-              <div class="wrap">
+              <div class="wrap animate__item">
                 <div class="card">
                   <figure class="card__imgContainer">
                     <img src="./images/card02.png" alt="" class="card__img">
@@ -154,9 +133,9 @@
             </div>
           </section>
           <section class="course__intro">
-            <p class="course__subTitle mx-auto">第二階段</p>
+            <p class="course__subTitle mx-auto animate__item">第二階段</p>
             <div class="cardSet d-flex">
-              <div class="wrap">
+              <div class="wrap animate__item">
                 <div class="card">
                   <figure class="card__imgContainer">
                     <img src="./images/card04.png" alt="" class="card__img">
@@ -168,8 +147,8 @@
                   </div>
                 </div>
               </div>
-              <div class="card__arrow">&raquo;</div>
-              <div class="wrap">
+              
+              <div class="wrap animate__item">
                 <div class="card">
                   <figure class="card__imgContainer">
                     <img src="./images/card05.png" alt="" class="card__img">
@@ -181,8 +160,8 @@
                   </div>
                 </div>
               </div>
-              <div class="card__arrow">&raquo;</div>
-              <div class="wrap">
+              
+              <div class="wrap animate__item">
                 <div class="card">
                   <figure class="card__imgContainer">
                     <img src="./images/card06.jpg" alt="" class="card__img">
@@ -194,8 +173,8 @@
                   </div>
                 </div>
               </div>
-              <div class="card__arrow">&raquo;</div>
-              <div class="wrap">
+              
+              <div class="wrap animate__item">
                 <div class="card">
                   <figure class="card__imgContainer">
                     <img src="./images/card07.jpg" alt="" class="card__img">
@@ -207,8 +186,8 @@
                   </div>
                 </div>
               </div>
-              <div class="card__arrow">&raquo;</div>
-              <div class="wrap">
+              
+              <div class="wrap animate__item">
                 <div class="card">
                   <figure class="card__imgContainer">
                     <img src="./images/card08.jpg" alt="" class="card__img">
@@ -223,9 +202,9 @@
             </div>
           </section>
           <section class="course__intro">
-            <p class="course__subTitle mx-auto">第三階段</p>
+            <p class="course__subTitle mx-auto animate__item">第三階段</p>
             <div class="cardSet d-flex">
-              <div class="wrap">
+              <div class="wrap animate__item">
                 <div class="card">
                   <figure class="card__imgContainer">
                     <img src="./images/card09.png" alt="" class="card__img">
@@ -237,8 +216,8 @@
                   </div>
                 </div>
               </div>
-              <div class="card__arrow">&raquo;</div>
-              <div class="wrap">
+              
+              <div class="wrap animate__item">
                 <div class="card">
                   <figure class="card__imgContainer">
                     <img src="./images/card10.png" alt="" class="card__img">
@@ -250,8 +229,8 @@
                   </div>
                 </div>
               </div>
-              <div class="card__arrow">&raquo;</div>
-              <div class="wrap">
+              
+              <div class="wrap animate__item">
                 <div class="card">
                   <figure class="card__imgContainer">
                     <img src="./images/card11.png" alt="" class="card__img">
@@ -263,8 +242,8 @@
                   </div>
                 </div>
               </div>
-              <div class="card__arrow">&raquo;</div>
-              <div class="wrap">
+              
+              <div class="wrap animate__item">
                 <div class="card">
                   <figure class="card__imgContainer">
                     <img src="./images/card12.png" alt="" class="card__img">
@@ -279,9 +258,9 @@
             </div>
           </section>
           <section class="course__intro">
-            <p class="course__subTitle mx-auto">第二階段</p>
+            <p class="course__subTitle mx-auto animate__item">第四階段</p>
             <div class="cardSet d-flex">
-              <div class="wrap">
+              <div class="wrap animate__item">
                 <div class="card">
                   <figure class="card__imgContainer">
                     <img src="./images/card13.png" alt="" class="card__img">
@@ -293,8 +272,8 @@
                   </div>
                 </div>
               </div>
-              <div class="card__arrow">&raquo;</div>
-              <div class="wrap">
+              
+              <div class="wrap animate__item">
                 <div class="card">
                   <figure class="card__imgContainer">
                     <img src="./images/card14.png" alt="" class="card__img">
@@ -306,8 +285,8 @@
                   </div>
                 </div>
               </div>
-              <div class="card__arrow">&raquo;</div>
-              <div class="wrap">
+              
+              <div class="wrap animate__item">
                 <div class="card">
                   <figure class="card__imgContainer">
                     <img src="./images/card15.png" alt="" class="card__img">
@@ -320,14 +299,14 @@
                 </div>
               </div>
             </div>
-            <a href="javascript:;" class="course__link mx-auto btn btn-white">我有興趣 &raquo;</a>
           </section>
+          <a href="javascript:;" class="course__link mx-auto btn btn-white">我有興趣 &raquo;</a>
         </div>
       </div>
       <div class="main__foot">
-        <div class="effort mx-auto">
-          <p class="effort__title">培訓成果</p>
-          <section class="effort__props d-flex">
+        <div class="effort mx-auto animate">
+          <p class="effort__title animate__title">培訓成果</p>
+          <section class="effort__props d-flex animate__item">
             <div class="effort__box">
               <p class="effort__count"><span class="effort__num">159</span> 人</p>
               <p class="effort__name">結訓校友</p>
@@ -341,7 +320,7 @@
               <p class="effort__name">成為前端工程師</p>
             </div>
           </section>
-          <table class="effort__tbl">
+          <table class="effort__tbl animate__item">
             <thead>
               <tr class="bg-cancel">
                 <th class="effort__th"></th>
