@@ -9,15 +9,19 @@ const range = 25;
 let animateIndex = 0;
 let levels = 3;
 let data = [];
-
+const isPC = innerWidth > 576;
+const elemHeaderToggle = document.querySelector('#HeaderToggle')
 setInit();
 setEvent();
 function setEvent() {
-  window.addEventListener('scroll', scrollHeader);
+  if (isPC) {
+    window.addEventListener('scroll', scrollHeader);
+  }
+  document.addEventListener('click', closeMenu)
   window.addEventListener('scroll', handleAnimation);
   document.querySelector('#MediaVideo').addEventListener('click', playVedio);
   elemModal.addEventListener('click', closeModal);
-  window.addEventListener('keyup', closeModal);
+  window.addEventListener('keydown', closeModal);
 }
 async function setInit() {
   setArrs();
@@ -29,8 +33,13 @@ async function getData() {
   let res = await fetch(api);
   data = await res.json();
 }
+function closeMenu(e) {
+  if (e.target === elemHeaderToggle) return;
+  elemHeaderToggle.checked = false
+  e.stopPropagation;
+}
 function render() {
-  document.querySelector('#CountNum').textContent = data.personNum;
+  hasQuota();
   elemCountLs.innerHTML = setProgressStr();
   let barWidth = setBarWidth();
   elemCountLs.querySelectorAll('.progress').forEach((item, index) => {
@@ -43,7 +52,7 @@ function setTimer() {
   let date = [];
   const elemDate = document.querySelector('.count__date');
   let remaining = ExceedDeadLine()
-  if (remaining >= 0) {
+  if (remaining > 0) {
     date.push(
       Math.floor((remaining / 1000) % 60),
       Math.floor((remaining / 1000 / 60) % 60),
@@ -58,6 +67,7 @@ function setTimer() {
     elemDate.querySelector('.min').textContent = date[1].slice(-2);
     elemDate.querySelector('.sec').textContent = date[0].slice(-2);
   } else {
+    state = 1;
     clearInterval(countDown);
   }
 }
@@ -128,14 +138,41 @@ function setBarWidth() {
   }
   return widthArr;
 }
-function setActState() {
-  let remaining = ExceedDeadLine();
-  if (remaining > 0) {
-    if (data.person === 100) {
-
+function hasQuota() {
+  const elemCountTit = document.querySelector('#CountTit');
+  const elemCountFoot = document.querySelector('#CountFoot');
+  const elemCountDate = document.querySelector('#CountDate');
+  const arrTit = [['優惠倒數:','贈送完畢'],'優惠活動結束'];
+  const arrDate = ['我們提早結束優惠', '請再關注我們的優惠時間'];
+  const arrAmount = ['已爆滿','已額滿']
+  let state = 0;
+  ExceedDeadLine() > 0 ? state = 0 : state = 1;
+  if (state === 0) {
+    if (data.personNum >= 100) {
+      elemCountTit.textContent = arrTit[state][1];
+      elemCountDate.textContent = arrDate[state];
+      elemCountFoot.innerHTML = `<p class="count__full">${arrAmount[state]}</p>`;
+      clearInterval(countDown);
       return
     }
-    return
+    elemCountTit.textContent = arrTit[state][0];
+    elemCountDate.innerHTML = `
+      <span class="day"></span> 天
+      <span class="hour"></span> 時
+      <span class="min"></span> 分
+      <span class="sec"></span> 秒`
+    elemCountFoot.innerHTML = `<p class="count__amount">已有 <strong class="count__num" id="CountNum">${data.personNum}</strong> 人報名</p>
+      <a href="javascript:;" class="count__link btn btn-white mx-auto">搶先報名 &raquo;</a>`
+  }
+  else {
+    elemCountTit.textContent = arrTit[state];
+    elemCountDate.textContent = arrDate[state];
+    if (data.personNum >= 100) {
+      elemCountFoot.innerHTML = `<p class="count__full">${arrAmount[state]}</p>`;
+      return
+    }
+    elemCountFoot.innerHTML = `<p class="count__amount"> 已有 <strong class="count__num" id = "CountNum" > ${ data.personNum }</strong> 人報名</p>
+      <a href="javascript:;" class="count__link btn btn-white mx-auto">我要報名 &raquo;</a>`
   }
 }
 function playVedio() {

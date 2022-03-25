@@ -19,11 +19,17 @@
       <h2 class="logo">
         <img class="logo__img" src="./images/logo.png" alt="F2E前端開發" width="167" height="50">
       </h2>
+      <input class="header__toggle" id="HeaderToggle" type="checkbox">
+      <label class="header__ham" for="HeaderToggle">
+        <div class="header__barWrap mx-auto">
+          <div class="header__bar"></div>
+        </div>
+      </label>
       <nav class="nav">
         <ul class="nav__ls d-flex">
-          <li class="nav__item">挑戰自我</li>
-          <li class="nav__item">課程說明</li>
-          <li class="nav__item">培訓成果</li>
+          <li class="nav__item"><a href="#MainHead" class="nav__link">挑戰自我</a></li>
+          <li class="nav__item"><a href="#MainBody" class="nav__link">課程說明</a></li>
+          <li class="nav__item"><a href="#MainFoot" class="nav__link">培訓成果</a></li>
         </ul>
       </nav>
     </header>
@@ -42,8 +48,8 @@
     <div class="synopsis">
       <div class="count container mx-auto d-flex">
         <section class="count__head block block-info">
-          <p class="count__tit">優惠倒數:</p>
-          <p class="count__date">
+          <p class="count__tit" id="CountTit">優惠倒數:</p>
+          <p class="count__date" id="CountDate">
             <span class="day"></span> 天
             <span class="hour"></span> 時
             <span class="min"></span> 分
@@ -53,14 +59,14 @@
         <section class="count__body block block-light">
           <ul class="count__ls mx-auto d-flex" id="CountLs"></ul>
         </section>
-        <section class="count__foot block block-purple">
+        <section class="count__foot block block-purple" id="CountFoot">
           <p class="count__amount">已有 <strong class="count__num" id="CountNum"></strong> 人報名</p>
           <a href="javascript:;" class="count__link btn btn-white mx-auto">搶先報名 &raquo;</a>
         </section>
       </div>
     </div>
     <main class="main">
-      <div class="main__head container mx-auto">
+      <div class="main__head container mx-auto" id="MainHead">
         <section class="desc">
           <div class="desc__head">
             <h3 class="desc__title">轉職？成為前端工程師？挑戰自我？</h3>
@@ -81,14 +87,15 @@
               <img class="desc__img" src="./images/media_video.jpg" alt="media__video" width="1880" height="945">
             </figure>
             <div class="modal" id="Modal">
-              <iframe class="modal__media youtube-video" src="https://www.youtube.com/embed/syFyL9tONRA?enablejsapi=1" frameborder="0" width="640"
-                height="360" allowfullscreen allow-modals></iframe>
+              <iframe class="modal__media"  width="560" height="315" src="https://www.youtube.com/embed/syFyL9tONRA?start=13" title="YouTube video player"
+                frameborder="0" allow=" autoplay; clipboard-write; encrypted-media;"
+                ></iframe>
             </div>
             <a href="javascript:;" class="desc__link mx-auto btn btn-md btn-peace">我想了解更多 &raquo;</a>
           </div>
         </section>
       </div>
-      <div class="main__body">
+      <div class="main__body" id="MainBody">
         <div class="course container mx-auto animate">
           <h3 class="course__title mx-auto animate__title">想要培養一技之長，成為前端工程師嗎？</h3>
           <section class="course__intro">
@@ -303,7 +310,7 @@
           <a href="javascript:;" class="course__link mx-auto btn btn-white">我有興趣 &raquo;</a>
         </div>
       </div>
-      <div class="main__foot">
+      <div class="main__foot container mx-auto" id="MainFoot">
         <div class="effort mx-auto animate">
           <p class="effort__title animate__title">培訓成果</p>
           <section class="effort__props d-flex animate__item">
