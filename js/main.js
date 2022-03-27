@@ -14,11 +14,9 @@ const elemHeaderToggle = document.querySelector('#HeaderToggle')
 setInit();
 setEvent();
 function setEvent() {
-  if (isPC) {
-    window.addEventListener('scroll', scrollHeader);
-  }
-  document.addEventListener('click', closeMenu)
+  window.addEventListener('scroll', scrollHeader);
   window.addEventListener('scroll', handleAnimation);
+  document.addEventListener('click', closeMenu)
   document.querySelector('#MediaVideo').addEventListener('click', playVedio);
   elemModal.addEventListener('click', closeModal);
   window.addEventListener('keydown', closeModal);
@@ -97,10 +95,21 @@ function setArrs() {
   })
 }
 function handleAnimation() {
+  controlCount();
   if (arrAllY[animateIndex] - window.scrollY <= (avalHeight * 1 / 2)) {
     showElem(arrAllel[animateIndex]);
     animateIndex += 1;
   }
+}
+function controlCount() {
+  const elemEffortProps = document.querySelector('#EffortProps');
+  const elemFinishNum = document.querySelector('#FinishNum');
+  const elemTransPercent = document.querySelector('#TransPercent');
+  const elemFrontedPercent = document.querySelector('#FrontedPercent');
+  if (arrAllel[animateIndex] !== elemEffortProps) return;
+  setCountAnimate(elemFinishNum, 0, 159, 3000);
+  setCountAnimate(elemTransPercent, 0, 85, 3000);
+  setCountAnimate(elemFrontedPercent, 0, 90, 3000);
 }
 function showElem(item) {
   if (item.classList.contains('animate__title')) {
@@ -109,6 +118,19 @@ function showElem(item) {
   }
   item.classList.add('js-slide__up');
 }
+function setCountAnimate(obj, start, end, duration) {
+  let startTimestamp = null;
+  const step = (timestamp) => {
+    if (!startTimestamp) startTimestamp = timestamp;
+    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+    obj.innerHTML = Math.floor(progress * (end - start) + start);
+    if (progress < 1) {
+      window.requestAnimationFrame(step);
+    }
+  };
+  window.requestAnimationFrame(step);
+}
+
 function setProgressStr(str = '') {
   for (let i = 0; i < levels; i += 1) {
     str +=
@@ -187,4 +209,6 @@ function closeModal(e) {
   elemModal.querySelector('.modal__media').src = elemModal.querySelector('.modal__media').src
   document.body.style.overflow = 'auto'
 }
+
+
 
