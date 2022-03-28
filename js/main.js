@@ -14,15 +14,13 @@ const range = 25;
 let animateIndex = 0;
 let levels = 3;
 let data = [];
-const isPC = innerWidth > 576;
 setInit();
 setEvent();
 function setEvent() {
   window.addEventListener('scroll', scrollHeader);
   window.addEventListener('scroll', handleAnimation);
   window.addEventListener('scroll', showToTop);
-  elemToTop.addEventListener('click', goToTop)
-  document.addEventListener('click', closeMenu)
+  document.addEventListener('click', closeMenu);
   document.querySelector('#MediaVideo').addEventListener('click', playVedio);
   elemModal.addEventListener('click', closeModal);
   window.addEventListener('keydown', closeModal);
@@ -38,6 +36,7 @@ async function getData() {
   data = await res.json();
 }
 function closeMenu(e) {
+  console.log(e.target)
   if (e.target === elemHeaderToggle) return;
   elemHeaderToggle.checked = false;
   e.stopPropagation;
@@ -58,13 +57,6 @@ function showToTop() {
     return;
   }
   elemToTop.style.display = 'none';
-  
-}
-function goToTop() {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  })
 }
 function setTimer() {
   let date = [];
@@ -95,11 +87,11 @@ function sliceStr(str) {
 function scrollHeader() {
   const elemHeader = document.querySelector('#Header');
   if (window.scrollY > 0) {
-    elemHeader.style.backgroundColor = ('#ffffffe5');
+    elemHeader.classList.add('js-header');
     return;
   }
   if (window.scrollY === 0) {
-    elemHeader.style.backgroundColor = ('transparent');
+    elemHeader.classList.remove('js-header');
     return;
   }
 }
@@ -135,7 +127,7 @@ function controlCount(e) {
     default:
       return;
   }
-  
+
 }
 function showElem(item) {
   if (item.classList.contains('animate__title')) {
@@ -190,9 +182,9 @@ function hasQuota() {
   const elemCountTit = document.querySelector('#CountTit');
   const elemCountFoot = document.querySelector('#CountFoot');
   const elemCountDate = document.querySelector('#CountDate');
-  const arrTit = [['優惠倒數:','贈送完畢'],'優惠活動結束'];
+  const arrTit = [['優惠倒數:', '贈送完畢'], '優惠活動結束'];
   const arrDate = ['我們提早結束優惠', '請再關注我們的優惠時間'];
-  const arrAmount = ['已爆滿','已額滿']
+  const arrAmount = ['已爆滿', '已額滿']
   let state = 0;
   ExceedDeadLine() > 0 ? state = 0 : state = 1;
   if (state === 0) {
@@ -219,16 +211,17 @@ function hasQuota() {
       elemCountFoot.innerHTML = `<p class="count__full">${arrAmount[state]}</p>`;
       return
     }
-    elemCountFoot.innerHTML = `<p class="count__amount"> 已有 <strong class="count__num" id = "CountNum" > ${ data.personNum }</strong> 人報名</p>
+    elemCountFoot.innerHTML = `<p class="count__amount"> 已有 <strong class="count__num" id = "CountNum" > ${data.personNum}</strong> 人報名</p>
       <a href="javascript:;" class="count__link btn btn-white mx-auto">我要報名 &raquo;</a>`
   }
 }
 function playVedio() {
   elemModal.style.display = 'block';
   document.body.style.overflow = 'hidden'
+  document.querySelector('#ModalMedia').src = 'https://www.youtube.com/embed/syFyL9tONRA?'
 }
 function closeModal(e) {
-  if(e.type === 'keyup'){
+  if (e.type === 'keyup') {
     if (e.keyCode !== 27) return;
   }
   elemModal.style.display = 'none';

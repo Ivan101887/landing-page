@@ -10,6 +10,9 @@
     <link rel="shortcut icon" href="./favorite.ico" type="image/x-icon">
     <link rel="stylesheet" href="./style/reset.css">
     <link rel="stylesheet" href="./style/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>F2E前端開發 Landing Page</title>
     <script src="./js/main.js" defer></script>
   </head>
@@ -21,9 +24,7 @@
       </h2>
       <input class="header__toggle" id="HeaderToggle" type="checkbox">
       <label class="header__ham" for="HeaderToggle">
-        <div class="header__barWrap mx-auto">
-          <div class="header__bar"></div>
-        </div>
+        <div class="header__barWrap mx-auto"><i class="fa-solid fa-bars"></i></div>
       </label>
       <nav class="nav">
         <ul class="nav__ls d-flex">
@@ -47,21 +48,13 @@
     <div class="synopsis">
       <div class="count mx-auto d-flex">
         <section class="count__head block block-info">
-          <p class="count__tit" id="CountTit">優惠倒數:</p>
-          <p class="count__date" id="CountDate">
-            <span class="day"></span> 天
-            <span class="hour"></span> 時
-            <span class="min"></span> 分
-            <span class="sec"></span> 秒
-          </p>
+          <p class="count__tit" id="CountTit"></p>
+          <p class="count__date" id="CountDate"></p>
         </section>
         <section class="count__body block block-light">
           <ul class="count__ls mx-auto d-flex" id="CountLs"></ul>
         </section>
-        <section class="count__foot block block-purple" id="CountFoot">
-          <p class="count__amount">已有 <strong class="count__num" id="CountNum"></strong> 人報名</p>
-          <a href="javascript:;" class="count__link btn btn-white mx-auto">搶先報名 &raquo;</a>
-        </section>
+        <section class="count__foot block block-purple" id="CountFoot"></section>
       </div>
     </div>
     <main class="main">
@@ -86,7 +79,7 @@
               <img class="desc__img" src="./images/media_video.jpg" alt="media__video" width="1880" height="945">
             </figure>
             <div class="modal" id="Modal">
-              <iframe class="modal__media"  width="560" height="315" src="https://www.youtube.com/embed/syFyL9tONRA?start=13" title="YouTube video player"
+              <iframe class="modal__media" id="ModalMedia"  width="560" height="420" src="https://www.youtube.com/embed/syFyL9tONRA?" title="YouTube video player"
                 frameborder="0" allow=" autoplay; clipboard-write; encrypted-media;"
                 ></iframe>
             </div>
@@ -373,7 +366,7 @@
         </div>
       </div>
     </main>
-    <button class="toTop btn btn-sm btn-black" id="ToTop">TOP</button>
+    <a href="#" class="toTop btn btn-sm btn-black" id="ToTop">TOP</a>
     <footer class="footer">
       <div class="container mx-auto">
         <p class="footer__head">前端工程師試題</p>
