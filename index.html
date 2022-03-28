@@ -37,8 +37,7 @@
       <div class="carousel" id="Carousel">
         <img class="carousel__img fade fade-0" src="./images/banr_snow.jpg" alt="snow" width="1024" height="576">
         <img class="carousel__img fade fade-1" src="./images/banr_ice.jpg" alt="ice" width="1024" height="576">
-        <img class="carousel__img fade fade-2" src="./images/banr_mountain.jpg" alt="mountain" width="1024"
-          height="576">
+        <img class="carousel__img fade fade-2" src="./images/banr_mountain.jpg" alt="mountain" width="1024" height="576">
         <img class="carousel__img fade fade-3" src="./images/banr_run.jpg" alt="run" width="1024" height="576">
       </div>
       <div class="intro">
@@ -46,7 +45,7 @@
       </div>
     </div>
     <div class="synopsis">
-      <div class="count container mx-auto d-flex">
+      <div class="count mx-auto d-flex">
         <section class="count__head block block-info">
           <p class="count__tit" id="CountTit">優惠倒數:</p>
           <p class="count__date" id="CountDate">
@@ -154,7 +153,6 @@
                   </div>
                 </div>
               </div>
-              
               <div class="wrap animate__item">
                 <div class="card">
                   <figure class="card__imgContainer">
@@ -167,7 +165,6 @@
                   </div>
                 </div>
               </div>
-              
               <div class="wrap animate__item">
                 <div class="card">
                   <figure class="card__imgContainer">
@@ -180,7 +177,6 @@
                   </div>
                 </div>
               </div>
-              
               <div class="wrap animate__item">
                 <div class="card">
                   <figure class="card__imgContainer">
@@ -193,7 +189,6 @@
                   </div>
                 </div>
               </div>
-              
               <div class="wrap animate__item">
                 <div class="card">
                   <figure class="card__imgContainer">
@@ -223,7 +218,6 @@
                   </div>
                 </div>
               </div>
-              
               <div class="wrap animate__item">
                 <div class="card">
                   <figure class="card__imgContainer">
@@ -279,7 +273,6 @@
                   </div>
                 </div>
               </div>
-              
               <div class="wrap animate__item">
                 <div class="card">
                   <figure class="card__imgContainer">
@@ -313,17 +306,17 @@
       <div class="main__foot container mx-auto" id="MainFoot">
         <div class="effort mx-auto animate">
           <p class="effort__title animate__title">培訓成果</p>
-          <section class="effort__props d-flex animate__item" id="EffortProps">
-            <div class="effort__box">
-              <p class="effort__count"><span class="effort__num" id="FinishNum"></span> 人</p>
+          <section class="effort__props d-flex ">
+            <div class="effort__box animate__item" id="FinishNum">
+              <p class="effort__count"><span class="effort__num"></span> 人</p>
               <p class="effort__name">結訓校友</p>
             </div>
-            <div class="effort__box">
-              <p class="effort__count"><span class="effort__num" id="TransPercent"></span> %</p>
+            <div class="effort__box animate__item" id="TransPercent">
+              <p class="effort__count"><span class="effort__num"></span> %</p>
               <p class="effort__name">成功轉職率</p>
             </div>
-            <div class="effort__box">
-              <p class="effort__count"><span class="effort__num" id="FrontedPercent"></span> %</p>
+            <div class="effort__box animate__item" id="FrontedPercent">
+              <p class="effort__count"><span class="effort__num"></span> %</p>
               <p class="effort__name">成為前端工程師</p>
             </div>
           </section>
@@ -380,6 +373,7 @@
         </div>
       </div>
     </main>
+    <button class="toTop btn btn-sm btn-black" id="ToTop">TOP</button>
     <footer class="footer">
       <div class="container mx-auto">
         <p class="footer__head">前端工程師試題</p>

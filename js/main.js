@@ -5,17 +5,23 @@ const elemAnimate = document.querySelectorAll('.animate');
 const elemCountLs = document.querySelector('#CountLs');
 const elemModal = document.querySelector('#Modal');
 const countDown = setInterval(setTimer, 1000);
+const elemHeaderToggle = document.querySelector('#HeaderToggle');
+const elemFinishNum = document.querySelector('#FinishNum');
+const elemTransPercent = document.querySelector('#TransPercent');
+const elemFrontedPercent = document.querySelector('#FrontedPercent');
+const elemToTop = document.querySelector('#ToTop');
 const range = 25;
 let animateIndex = 0;
 let levels = 3;
 let data = [];
 const isPC = innerWidth > 576;
-const elemHeaderToggle = document.querySelector('#HeaderToggle')
 setInit();
 setEvent();
 function setEvent() {
   window.addEventListener('scroll', scrollHeader);
   window.addEventListener('scroll', handleAnimation);
+  window.addEventListener('scroll', showToTop);
+  elemToTop.addEventListener('click', goToTop)
   document.addEventListener('click', closeMenu)
   document.querySelector('#MediaVideo').addEventListener('click', playVedio);
   elemModal.addEventListener('click', closeModal);
@@ -33,7 +39,7 @@ async function getData() {
 }
 function closeMenu(e) {
   if (e.target === elemHeaderToggle) return;
-  elemHeaderToggle.checked = false
+  elemHeaderToggle.checked = false;
   e.stopPropagation;
 }
 function render() {
@@ -45,6 +51,20 @@ function render() {
       ? item.classList.add('js-progress')
       : item.querySelector('.progress__bar').style.width = `${barWidth[index] * 100}%`;
   });
+}
+function showToTop() {
+  if (window.scrollY > 0) {
+    elemToTop.style.display = 'block';
+    return;
+  }
+  elemToTop.style.display = 'none';
+  
+}
+function goToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  })
 }
 function setTimer() {
   let date = [];
@@ -95,21 +115,27 @@ function setArrs() {
   })
 }
 function handleAnimation() {
-  controlCount();
+  controlCount(arrAllel[animateIndex]);
   if (arrAllY[animateIndex] - window.scrollY <= (avalHeight * 1 / 2)) {
     showElem(arrAllel[animateIndex]);
     animateIndex += 1;
   }
 }
-function controlCount() {
-  const elemEffortProps = document.querySelector('#EffortProps');
-  const elemFinishNum = document.querySelector('#FinishNum');
-  const elemTransPercent = document.querySelector('#TransPercent');
-  const elemFrontedPercent = document.querySelector('#FrontedPercent');
-  if (arrAllel[animateIndex] !== elemEffortProps) return;
-  setCountAnimate(elemFinishNum, 0, 159, 3000);
-  setCountAnimate(elemTransPercent, 0, 85, 3000);
-  setCountAnimate(elemFrontedPercent, 0, 90, 3000);
+function controlCount(e) {
+  switch (e) {
+    case elemFinishNum:
+      setCountAnimate(e.querySelector('.effort__num'), 0, 159, 3000);
+      break;
+    case elemTransPercent:
+      setCountAnimate(e.querySelector('.effort__num'), 0, 85, 3000);
+      break;
+    case elemFrontedPercent:
+      setCountAnimate(e.querySelector('.effort__num'), 0, 90, 3000);
+      break;
+    default:
+      return;
+  }
+  
 }
 function showElem(item) {
   if (item.classList.contains('animate__title')) {
