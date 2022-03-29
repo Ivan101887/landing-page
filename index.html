@@ -22,11 +22,10 @@
       <h2 class="logo">
         <img class="logo__img" src="./images/logo.png" alt="F2E前端開發" width="167" height="50">
       </h2>
-      <input class="header__toggle" id="HeaderToggle" type="checkbox">
-      <label class="header__ham" for="HeaderToggle">
+      <div class="header__ham" id="HeaderHam">
         <div class="header__barWrap mx-auto"><i class="fa-solid fa-bars"></i></div>
-      </label>
-      <nav class="nav">
+      </div>
+      <nav class="nav" id="Nav">
         <ul class="nav__ls d-flex">
           <li class="nav__item"><a href="#MainHead" class="nav__link">挑戰自我</a></li>
           <li class="nav__item"><a href="#MainBody" class="nav__link">課程說明</a></li>
@@ -42,7 +41,9 @@
         <img class="carousel__img fade fade-3" src="./images/banr_run.jpg" alt="run" width="1024" height="576">
       </div>
       <div class="intro">
+        <h2 class="intro__subTit">F2E 前端開發</h2>
         <h1 class="intro__tit">前端工程師排版試題</h1>
+        <h2 class="intro__subTit">學會，百萬年薪不是夢</h2>
       </div>
     </div>
     <div class="synopsis">
@@ -96,7 +97,7 @@
               <div class="wrap animate__item">
                 <div class="card">
                   <figure class="card__imgContainer">
-                    <img src="./images/card01.jpg" alt="" class="card__img">
+                    <img src="./images/card01.jpg" alt="第一週課程" class="card__img" loading="lazy">
                   </figure>
                   <div class="card__content">
                     <p class="card__tag">第一週</p>
@@ -108,7 +109,7 @@
               <div class="wrap animate__item">
                 <div class="card">
                   <figure class="card__imgContainer">
-                    <img src="./images/card02.jpg" alt="" class="card__img">
+                    <img src="./images/card02.jpg" alt="第二週課程" class="card__img" loading="lazy">
                   </figure>
                   <div class="card__content">
                     <p class="card__tag">第二週</p>
@@ -120,7 +121,7 @@
               <div class="wrap animate__item">
                 <div class="card">
                   <figure class="card__imgContainer">
-                    <img src="./images/card02.png" alt="" class="card__img">
+                    <img src="./images/card02.png" alt="第三週課程" class="card__img" loading="lazy">
                   </figure>
                   <div class="card__content">
                     <p class="card__tag">第三週</p>
@@ -137,7 +138,7 @@
               <div class="wrap animate__item">
                 <div class="card">
                   <figure class="card__imgContainer">
-                    <img src="./images/card04.png" alt="" class="card__img">
+                    <img src="./images/card04.png" alt="第四周課程" class="card__img" loading="lazy">
                   </figure>
                   <div class="card__content">
                     <p class="card__tag">第四週</p>
@@ -149,7 +150,7 @@
               <div class="wrap animate__item">
                 <div class="card">
                   <figure class="card__imgContainer">
-                    <img src="./images/card05.png" alt="" class="card__img">
+                    <img src="./images/card05.png" alt="第五週課程" class="card__img" loading="lazy">
                   </figure>
                   <div class="card__content">
                     <p class="card__tag">第五週</p>
@@ -161,7 +162,7 @@
               <div class="wrap animate__item">
                 <div class="card">
                   <figure class="card__imgContainer">
-                    <img src="./images/card06.jpg" alt="" class="card__img">
+                    <img src="./images/card06.jpg" alt="第六週課程" class="card__img" loading="lazy">
                   </figure>
                   <div class="card__content">
                     <p class="card__tag">第六週</p>
@@ -173,7 +174,7 @@
               <div class="wrap animate__item">
                 <div class="card">
                   <figure class="card__imgContainer">
-                    <img src="./images/card07.jpg" alt="" class="card__img">
+                    <img src="./images/card07.jpg" alt="第七週課程" class="card__img" loading="lazy">
                   </figure>
                   <div class="card__content">
                     <p class="card__tag">第七週</p>
@@ -185,7 +186,7 @@
               <div class="wrap animate__item">
                 <div class="card">
                   <figure class="card__imgContainer">
-                    <img src="./images/card08.jpg" alt="" class="card__img">
+                    <img src="./images/card08.jpg" alt="第八週課程" class="card__img" loading="lazy">
                   </figure>
                   <div class="card__content">
                     <p class="card__tag">第八週</p>
@@ -202,7 +203,7 @@
               <div class="wrap animate__item">
                 <div class="card">
                   <figure class="card__imgContainer">
-                    <img src="./images/card09.png" alt="" class="card__img">
+                    <img src="./images/card09.png" alt="第九週課程" class="card__img" loading="lazy">
                   </figure>
                   <div class="card__content">
                     <p class="card__tag">第九週</p>
@@ -214,7 +215,7 @@
               <div class="wrap animate__item">
                 <div class="card">
                   <figure class="card__imgContainer">
-                    <img src="./images/card10.png" alt="" class="card__img">
+                    <img src="./images/card10.png" alt="第十週課程" class="card__img" loading="lazy">
                   </figure>
                   <div class="card__content">
                     <p class="card__tag">第十週</p>
@@ -227,7 +228,7 @@
               <div class="wrap animate__item">
                 <div class="card">
                   <figure class="card__imgContainer">
-                    <img src="./images/card11.png" alt="" class="card__img">
+                    <img src="./images/card11.png" alt="第十一週課程" class="card__img" loading="lazy">
                   </figure>
                   <div class="card__content">
                     <p class="card__tag">第十一週</p>
@@ -240,7 +241,7 @@
               <div class="wrap animate__item">
                 <div class="card">
                   <figure class="card__imgContainer">
-                    <img src="./images/card12.png" alt="" class="card__img">
+                    <img src="./images/card12.png" alt="第十二週課程" class="card__img" loading="lazy">
                   </figure>
                   <div class="card__content">
                     <p class="card__tag">第十二週</p>
@@ -257,7 +258,7 @@
               <div class="wrap animate__item">
                 <div class="card">
                   <figure class="card__imgContainer">
-                    <img src="./images/card13.png" alt="" class="card__img">
+                    <img src="./images/card13.png" alt="第十三週課程" class="card__img" loading="lazy">
                   </figure>
                   <div class="card__content">
                     <p class="card__tag">第十三週</p>
@@ -269,7 +270,7 @@
               <div class="wrap animate__item">
                 <div class="card">
                   <figure class="card__imgContainer">
-                    <img src="./images/card14.png" alt="" class="card__img">
+                    <img src="./images/card14.png" alt="第十四週課程" class="card__img" loading="lazy">
                   </figure>
                   <div class="card__content">
                     <p class="card__tag">第十四週</p>
@@ -282,7 +283,7 @@
               <div class="wrap animate__item">
                 <div class="card">
                   <figure class="card__imgContainer">
-                    <img src="./images/card15.png" alt="" class="card__img">
+                    <img src="./images/card15.png" alt="第十五週課程" class="card__img" loading="lazy">
                   </figure>
                   <div class="card__content">
                     <p class="card__tag">第十五週</p>

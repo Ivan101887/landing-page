@@ -5,22 +5,23 @@ const elemAnimate = document.querySelectorAll('.animate');
 const elemCountLs = document.querySelector('#CountLs');
 const elemModal = document.querySelector('#Modal');
 const countDown = setInterval(setTimer, 1000);
-const elemHeaderToggle = document.querySelector('#HeaderToggle');
+const elemHeaderHam = document.querySelector('#HeaderHam');
 const elemFinishNum = document.querySelector('#FinishNum');
 const elemTransPercent = document.querySelector('#TransPercent');
 const elemFrontedPercent = document.querySelector('#FrontedPercent');
 const elemToTop = document.querySelector('#ToTop');
-const range = 25;
+const effortNum = [159, 85, 90];
 let animateIndex = 0;
 let levels = 3;
 let data = [];
+
 setInit();
 setEvent();
 function setEvent() {
   window.addEventListener('scroll', scrollHeader);
   window.addEventListener('scroll', handleAnimation);
   window.addEventListener('scroll', showToTop);
-  document.addEventListener('click', closeMenu);
+  window.addEventListener('click', closeMenu);
   document.querySelector('#MediaVideo').addEventListener('click', playVedio);
   elemModal.addEventListener('click', closeModal);
   window.addEventListener('keydown', closeModal);
@@ -36,16 +37,23 @@ async function getData() {
   data = await res.json();
 }
 function closeMenu(e) {
-  console.log(e.target)
-  if (e.target === elemHeaderToggle) return;
-  elemHeaderToggle.checked = false;
-  e.stopPropagation;
+  const elemNav = document.querySelector('#Nav');
+  if (e.target.nodeName === 'I') {
+    elemNav.classList.toggle('js-nav');
+    return;
+  }
+  elemNav.classList.remove('js-nav');
+  e.stopPropagation();
+
 }
 function render() {
   hasQuota();
   elemCountLs.innerHTML = setProgressStr();
   let barWidth = setBarWidth();
   elemCountLs.querySelectorAll('.progress').forEach((item, index) => {
+    item.style.width = index === 0
+      ? `${calcRange(0)}%`
+      : `${calcRange(index) - calcRange(index - 1)}%`
     barWidth[index] === 1
       ? item.classList.add('js-progress')
       : item.querySelector('.progress__bar').style.width = `${barWidth[index] * 100}%`;
@@ -116,13 +124,13 @@ function handleAnimation() {
 function controlCount(e) {
   switch (e) {
     case elemFinishNum:
-      setCountAnimate(e.querySelector('.effort__num'), 0, 159, 3000);
+      setCountAnimate(e.querySelector('.effort__num'), 0, effortNum[0], 3000);
       break;
     case elemTransPercent:
-      setCountAnimate(e.querySelector('.effort__num'), 0, 85, 3000);
+      setCountAnimate(e.querySelector('.effort__num'), 0, effortNum[1], 3000);
       break;
     case elemFrontedPercent:
-      setCountAnimate(e.querySelector('.effort__num'), 0, 90, 3000);
+      setCountAnimate(e.querySelector('.effort__num'), 0, effortNum[2], 3000);
       break;
     default:
       return;
@@ -168,15 +176,15 @@ function ExceedDeadLine() {
 }
 function setBarWidth() {
   let widthArr = [];
+  let prevRange = 0;
   for (let i = 0; i < levels; i += 1) {
-    if (i === 2) {
-      data.personNum >= (range + range * (i + 1)) ? widthArr.push(1) : widthArr.push((data.personNum - range * i) / (range * 2));
-    }
-    else {
-      data.personNum >= range * (i + 1) ? widthArr.push(1) : widthArr.push((data.personNum - range * i) / range);
-    }
+    i - 1 < 0 ? prevRange = 0 : prevRange = i - 1;
+    data.personNum >= calcRange(i) ? widthArr.push(1) : widthArr.push((data.personNum - calcRange(prevRange)) / calcRange(i));
   }
   return widthArr;
+}
+function calcRange(order) {
+  return range = data.list[order].level;
 }
 function hasQuota() {
   const elemCountTit = document.querySelector('#CountTit');
@@ -202,31 +210,29 @@ function hasQuota() {
       <span class="min"></span> 分
       <span class="sec"></span> 秒`
     elemCountFoot.innerHTML = `<p class="count__amount">已有 <strong class="count__num" id="CountNum">${data.personNum}</strong> 人報名</p>
-      <a href="javascript:;" class="count__link btn btn-white mx-auto">搶先報名 &raquo;</a>`
+      <a href="javascript:;" class="count__link btn btn-white mx-auto">搶先報名 &raquo;</a>`;
   }
   else {
     elemCountTit.textContent = arrTit[state];
     elemCountDate.textContent = arrDate[state];
     if (data.personNum >= 100) {
       elemCountFoot.innerHTML = `<p class="count__full">${arrAmount[state]}</p>`;
-      return
+      return;
     }
     elemCountFoot.innerHTML = `<p class="count__amount"> 已有 <strong class="count__num" id = "CountNum" > ${data.personNum}</strong> 人報名</p>
-      <a href="javascript:;" class="count__link btn btn-white mx-auto">我要報名 &raquo;</a>`
+      <a href="javascript:;" class="count__link btn btn-white mx-auto">我要報名 &raquo;</a>`;
   }
 }
 function playVedio() {
   elemModal.style.display = 'block';
-  document.body.style.overflow = 'hidden'
-  document.querySelector('#ModalMedia').src = 'https://www.youtube.com/embed/syFyL9tONRA?'
+  document.body.style.overflow = 'hidden';
+  document.querySelector('#ModalMedia').src = 'https://www.youtube.com/embed/syFyL9tONRA?';
 }
 function closeModal(e) {
-  if (e.type === 'keyup') {
-    if (e.keyCode !== 27) return;
-  }
+  if (e.type === 'keydown' && e.keyCode !== 27) return;
   elemModal.style.display = 'none';
-  elemModal.querySelector('.modal__media').src = elemModal.querySelector('.modal__media').src
-  document.body.style.overflow = 'auto'
+  elemModal.querySelector('.modal__media').src = '';
+  document.body.style.overflow = 'auto';
 }
 
 
