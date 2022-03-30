@@ -20,6 +20,14 @@ body {
   box-sizing: border-box;
   transition: all .8s ease-in-out;
 }
+.outer {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 80vh;
+  justify-content: center;
+  align-items: center;
+}
 .banner {
   overflow: hidden;
 }
@@ -72,11 +80,8 @@ body {
 }
 /* -----intro----- */
 .intro {
-  position: absolute;
   padding-top: 110px;
   padding-bottom: 110px;
-  top: calc(50% - 300px);
-  left: calc(50% - 375px);
   width: 728px;
   color: #24B4D7;
   font-weight: 600;
@@ -150,7 +155,7 @@ body {
   font-weight: 600;
 }
 .count__ls {
-  max-width: 320px;
+  max-width: 95%;
 }
 .count__num {
   font-size: 2rem;
@@ -180,15 +185,22 @@ body {
 
 .progress__head,
 .progress__foot {
-    position: relative;
-    left: 45%;
-    bottom: 25px;
+  position: absolute;
+}
+.progress__head {
+  right: -26px;
+  bottom: 20px;
+}
+.progress__foot {
+  width: 79px;
+  top: 21px;
+  right: -31px;
 }
 
 .progress__begin {
     position: absolute;
-    top: 20px;
-    left: -19px;
+    top: 21px;
+    left: -27px;
 }
 
 .progress__bar {
@@ -196,10 +208,10 @@ body {
     height: 5px;
     width: 0;
     background-color: #22A9CA;
-    margin-top: 14px;
-    margin-bottom: 13px;
+    /* margin-top: 14px;
+    margin-bottom: 13px; */
     position: relative;
-    bottom: 28px;
+    bottom: 0px;
 }
 
 .progress:first-child::before {
@@ -670,10 +682,12 @@ body {
   .count__tit {
     padding-left: 5px;
     padding-right: 5px;
-    font-size: 1.56rem;
-  }
-  .count__tit {
     font-size: 2rem;
+  }
+  .progress__head,
+  .progress__begin,
+  .progress__foot {
+    font-size: 0.75rem;
   }
   .desc__title {
     font-size: 2rem;
@@ -690,7 +704,6 @@ body {
   .effort {
     width: 90.54%;
   }
-  
   .desc__media--lg {
     width: 60%;
     height: 380px;
@@ -719,16 +732,11 @@ body {
   }
 }
 @media screen and (max-width: 768px) {
-  .carousel {
-    height: 80vh;
-  }
   .container {
     padding: 0;
   }
   .intro {
     width: 87.7%;
-    top: 200px;
-    left: 5%;
     padding-top: 30px;
     padding-bottom: 30px;
   }
@@ -738,9 +746,7 @@ body {
   .intro__subTit {
     font-size: 25px;
   }
-  .progress__bar {
-    bottom: 29px;
-  }
+  
   .course__link {
     margin-top: 110px;
     margin-bottom: 0;
@@ -781,13 +787,17 @@ body {
   .progress-lg {
     width: 120px;
   }
-  .progress__bar {
-    bottom: 27px;
-  }
+  
   .progress__head,
   .progress__foot,
   .progress__begin {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
+  }
+  .progress__head {
+    right: -23px;
+  }
+  .progress__foot {
+    right: -29px;
   }
   .desc__head,
   .desc__body {
@@ -920,5 +930,25 @@ body {
   .footer {
     text-align: center;
   }
-  
+}
+@media screen and (max-width:414px) {
+  .day,
+  .hour,
+  .min,
+  .sec {
+    font-size: 1.3rem;
+  }
+  .count__head {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+@media screen and (max-width:375px) {
+  .day,
+  .hour,
+  .min,
+  .sec {
+    font-size: 1rem;
+  }
 }

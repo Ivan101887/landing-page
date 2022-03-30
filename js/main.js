@@ -161,10 +161,10 @@ function setProgressStr(str = '') {
   for (let i = 0; i < levels; i += 1) {
     str +=
       `<li class="progress ${i === 2 ? 'progress-lg' : ''}">
-          <p class="progress__head mx-auto">達 ${data.list[i].level} 人</p>
+          <p class="progress__head">達 ${data.list[i].level} 人</p>
           <p class="progress__bar"></p>
           ${i === 0 ? '<p class="progress__begin">預備開始</p>' : ''}
-          <p class="progress__foot mx-auto">送 ${data.list[i].productName}</p>
+          <p class="progress__foot">送 ${data.list[i].productName}</p>
         </li>`;
   }
   return str;
