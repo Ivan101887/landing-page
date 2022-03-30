@@ -1,6 +1,7 @@
 const avalHeight = window.innerHeight;
 const arrAllY = [];
 const arrAllel = [];
+const elemNav = document.querySelector('#Nav');
 const elemAnimate = document.querySelectorAll('.animate');
 const elemCountLs = document.querySelector('#CountLs');
 const elemModal = document.querySelector('#Modal');
@@ -10,41 +11,20 @@ const elemFinishNum = document.querySelector('#FinishNum');
 const elemTransPercent = document.querySelector('#TransPercent');
 const elemFrontedPercent = document.querySelector('#FrontedPercent');
 const elemToTop = document.querySelector('#ToTop');
-const effortNum = [159, 85, 90];
 let animateIndex = 0;
 let levels = 3;
 let data = [];
-
 setInit();
 setEvent();
-function setEvent() {
-  window.addEventListener('scroll', scrollHeader);
-  window.addEventListener('scroll', handleAnimation);
-  window.addEventListener('scroll', showToTop);
-  window.addEventListener('click', closeMenu);
-  document.querySelector('#MediaVideo').addEventListener('click', playVedio);
-  elemModal.addEventListener('click', closeModal);
-  window.addEventListener('keydown', closeModal);
-}
 async function setInit() {
-  setArrs();
   await getData();
   render();
+  setArrs();
 }
 async function getData() {
   const api = './data/activity.json'
   let res = await fetch(api);
   data = await res.json();
-}
-function closeMenu(e) {
-  const elemNav = document.querySelector('#Nav');
-  if (e.target.nodeName === 'I') {
-    elemNav.classList.toggle('js-nav');
-    return;
-  }
-  elemNav.classList.remove('js-nav');
-  e.stopPropagation();
-
 }
 function render() {
   hasQuota();
@@ -52,20 +32,58 @@ function render() {
   let barWidth = setBarWidth();
   elemCountLs.querySelectorAll('.progress').forEach((item, index) => {
     item.style.width = index === 0
-      ? `${calcRange(0)}%`
-      : `${calcRange(index) - calcRange(index - 1)}%`
+    ? `${calcRange(0)}%`
+    : `${calcRange(index) - calcRange(index - 1)}%`
     barWidth[index] === 1
       ? item.classList.add('js-progress')
       : item.querySelector('.progress__bar').style.width = `${barWidth[index] * 100}%`;
   });
 }
-function showToTop() {
-  if (window.scrollY > 0) {
-    elemToTop.style.display = 'block';
-    return;
-  }
-  elemToTop.style.display = 'none';
+  // 擷取動畫元素及高度 
+function setArrs() {
+  elemAnimate.forEach((e) => {
+    const elAnimateTitle = e.querySelector('.animate__title')
+    arrAllY.push(elAnimateTitle.offsetTop);
+    arrAllel.push(elAnimateTitle);
+    e.querySelectorAll('.animate__item').forEach(el => {
+      arrAllY.push(el.offsetTop);
+      arrAllel.push(el);
+    });
+  })
 }
+  // 產生進度條模板  
+function setProgressStr(str = '') {
+  for (let i = 0; i < levels; i += 1) {
+    str +=
+      `<li class="progress">
+          <p class="progress__head">達 ${data.list[i].level} 人</p>
+          <p class="progress__bar"></p>
+          ${i === 0 ? '<p class="progress__begin">預備開始</p>' : ''}
+          <p class="progress__foot">送 ${data.list[i].productName}</p>
+        </li>`;
+  }
+  return str;
+}
+  // 產生進度條長度
+function setBarWidth() {
+  let widthArr = [];
+  let prevRange = 0;
+  for (let i = 0; i < levels; i += 1) {
+    i - 1 < 0 ? prevRange = 0 : prevRange = i - 1;
+    data.personNum >= calcRange(i)
+      ? widthArr.push(1)
+      : widthArr.push(i === 0
+        ? Math.abs(data.personNum / calcRange(i))
+        : (data.personNum - calcRange(prevRange)) / calcRange(i))
+      ;
+  }
+  return widthArr;
+}
+  // 計算進度條各段級距
+function calcRange(order) {
+  return range = data.list[order].level;
+}
+  // 設定活動定時器 
 function setTimer() {
   let date = [];
   const elemDate = document.querySelector('.count__date');
@@ -89,103 +107,7 @@ function setTimer() {
     clearInterval(countDown);
   }
 }
-function sliceStr(str) {
-  return str.slice(-(str.length - 1));
-}
-function scrollHeader() {
-  const elemHeader = document.querySelector('#Header');
-  if (window.scrollY > 0) {
-    elemHeader.classList.add('js-header');
-    return;
-  }
-  if (window.scrollY === 0) {
-    elemHeader.classList.remove('js-header');
-    return;
-  }
-}
-function setArrs() {
-  elemAnimate.forEach((e) => {
-    const elAnimateTitle = e.querySelector('.animate__title')
-    arrAllY.push(elAnimateTitle.offsetTop);
-    arrAllel.push(elAnimateTitle);
-    e.querySelectorAll('.animate__item').forEach(el => {
-      arrAllY.push(el.offsetTop);
-      arrAllel.push(el);
-    });
-  })
-}
-function handleAnimation() {
-  controlCount(arrAllel[animateIndex]);
-  if (arrAllY[animateIndex] - window.scrollY <= (avalHeight * 1 / 2)) {
-    showElem(arrAllel[animateIndex]);
-    animateIndex += 1;
-  }
-}
-function controlCount(e) {
-  switch (e) {
-    case elemFinishNum:
-      setCountAnimate(e.querySelector('.effort__num'), 0, effortNum[0], 3000);
-      break;
-    case elemTransPercent:
-      setCountAnimate(e.querySelector('.effort__num'), 0, effortNum[1], 3000);
-      break;
-    case elemFrontedPercent:
-      setCountAnimate(e.querySelector('.effort__num'), 0, effortNum[2], 3000);
-      break;
-    default:
-      return;
-  }
-
-}
-function showElem(item) {
-  if (item.classList.contains('animate__title')) {
-    item.classList.add('js-slide__down');
-    return;
-  }
-  item.classList.add('js-slide__up');
-}
-function setCountAnimate(obj, start, end, duration) {
-  let startTimestamp = null;
-  const step = (timestamp) => {
-    if (!startTimestamp) startTimestamp = timestamp;
-    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-    obj.innerHTML = Math.floor(progress * (end - start) + start);
-    if (progress < 1) {
-      window.requestAnimationFrame(step);
-    }
-  };
-  window.requestAnimationFrame(step);
-}
-
-function setProgressStr(str = '') {
-  for (let i = 0; i < levels; i += 1) {
-    str +=
-      `<li class="progress ${i === 2 ? 'progress-lg' : ''}">
-          <p class="progress__head">達 ${data.list[i].level} 人</p>
-          <p class="progress__bar"></p>
-          ${i === 0 ? '<p class="progress__begin">預備開始</p>' : ''}
-          <p class="progress__foot">送 ${data.list[i].productName}</p>
-        </li>`;
-  }
-  return str;
-}
-function ExceedDeadLine() {
-  const endTime = Date.parse(new Date(data.endTime))
-  const now = Date.parse(new Date())
-  return endTime - now;
-}
-function setBarWidth() {
-  let widthArr = [];
-  let prevRange = 0;
-  for (let i = 0; i < levels; i += 1) {
-    i - 1 < 0 ? prevRange = 0 : prevRange = i - 1;
-    data.personNum >= calcRange(i) ? widthArr.push(1) : widthArr.push((data.personNum - calcRange(prevRange)) / calcRange(i));
-  }
-  return widthArr;
-}
-function calcRange(order) {
-  return range = data.list[order].level;
-}
+  // 判斷資料名額產生模板  
 function hasQuota() {
   const elemCountTit = document.querySelector('#CountTit');
   const elemCountFoot = document.querySelector('#CountFoot');
@@ -223,16 +145,108 @@ function hasQuota() {
       <a href="javascript:;" class="count__link btn btn-white mx-auto">我要報名 &raquo;</a>`;
   }
 }
+  // 字串處理 
+function sliceStr(str) {
+  return str.slice(-(str.length - 1));
+}
+  // 判斷活動時間距今
+function ExceedDeadLine() {
+  const endTime = Date.parse(new Date(data.endTime))
+  const now = Date.parse(new Date())
+  return endTime - now;
+}
+// 註冊事件監聽
+function setEvent() {
+  window.addEventListener('scroll', scrollHeader);
+  window.addEventListener('scroll', handleAnimation);
+  window.addEventListener('scroll', showToTop);
+  document.addEventListener('click', closeMenu);
+  window.addEventListener('keydown', closeModal);
+  document.querySelector('.header__barWrap').addEventListener('click', toggleMenu)
+  document.querySelector('#MediaVideo').addEventListener('click', playVedio);
+  elemModal.addEventListener('click', closeModal);
+}
+/* -----事件監聽function----- */
+  // 捲動視窗顯示header背景色
+function scrollHeader() {
+  const elemHeader = document.querySelector('#Header');
+  if (window.scrollY > 0) {
+    elemHeader.classList.add('js-header');
+    return;
+  }
+  if (window.scrollY === 0) {
+    elemHeader.classList.remove('js-header');
+    return;
+  }
+}
+  //顯示Iframe，動態產生影片路徑 
 function playVedio() {
   elemModal.style.display = 'block';
   document.body.style.overflow = 'hidden';
   document.querySelector('#ModalMedia').src = 'https://www.youtube.com/embed/syFyL9tONRA?';
 }
+  // 關閉滿版窗格&影片
 function closeModal(e) {
   if (e.type === 'keydown' && e.keyCode !== 27) return;
   elemModal.style.display = 'none';
   elemModal.querySelector('.modal__media').src = '';
   document.body.style.overflow = 'auto';
+}
+  // 控制動畫(數字動畫、淡入)
+function handleAnimation() {
+  if (arrAllY[animateIndex] - window.scrollY <= (avalHeight * 1 / 2)) {
+    arrAllel[animateIndex].classList.add('js-animate');
+    animateIndex += 1;
+  }
+  controlCount(arrAllel[animateIndex]);
+}
+// 數字動畫function
+function setCountAnimate(obj, start, end, duration) {
+  let startTimestamp = null;
+  const step = (timestamp) => {
+    if (!startTimestamp) startTimestamp = timestamp;
+    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+    obj.innerHTML = Math.floor(progress * (end - start) + start);
+    if (progress < 1) {
+      window.requestAnimationFrame(step);
+    }
+  };
+  window.requestAnimationFrame(step);
+}
+// 執行數字動畫
+function controlCount(e) {
+  const target = e.querySelector('.effort__num')
+  switch (e) {
+    case elemFinishNum:
+      setCountAnimate(target, 0, target.dataset.num, 3000);
+      break;
+    case elemTransPercent:
+      setCountAnimate(target, 0, target.dataset.num, 3000);
+      break;
+    case elemFrontedPercent:
+      setCountAnimate(target, 0, target.dataset.num, 3000);
+      break;
+    default:
+      return;
+  }
+}
+  //切換手機板選單顯示隱藏
+function toggleMenu() {
+  elemNav.classList.toggle('js-nav');
+}
+  //任意點擊關閉選單 
+function closeMenu(e) {
+  if (e.target.nodeName !== 'I') {
+    elemNav.classList.remove('js-nav');
+  }
+}
+ //滾動顯示隱藏置頂按鈕 
+function showToTop() {
+  if (window.scrollY > 0) {
+    elemToTop.style.display = 'block';
+    return;
+  }
+  elemToTop.style.display = 'none';
 }
 
 

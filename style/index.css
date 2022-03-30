@@ -41,8 +41,11 @@ body {
 .header__ham {
   position: relative;
   display: none;
-  margin-right: 15px;
   box-sizing: border-box;
+}
+.header__barWrap {
+  border-width: 0;
+  background-color: transparent;
 }
 /* -----logo----- */
 .logo__img {
@@ -106,7 +109,6 @@ body {
 /* -----count----- */
 .count {
   max-width: 1070px;
-  align-items: stretch;
   flex-wrap: wrap;
   position: relative; 
   top: -55px;
@@ -119,6 +121,19 @@ body {
   padding-top: 20px;
   padding-bottom: 20px;
 }
+.count__tit {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+.count__date {
+  font-size: 1.25rem;
+}
+.day,
+.hour,
+.min,
+.sec {
+  font-size: 1.75rem;
+}
 .count__body {
   width: 38%;
   padding: 20px 45px;
@@ -129,36 +144,26 @@ body {
   padding-top: 11px;
   padding-bottom: 11px;
 }
-.count__tit {
-  font-size: 2rem;
-  margin-bottom: 15px;
+.count__head,
+.count__foot {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-.count__date {
-  font-size: 1.25rem;
-
+.count__ls {
+  max-width: 95%;
 }
-.day,
-.hour,
-.min,
-.sec {
-  font-size: 1.75rem;
-}
-
 .count__amount {
   font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 15px;
 }
-.count__full {
-  line-height: 85px;
-  font-size: 1.6rem;
-  font-weight: 600;
-}
-.count__ls {
-  max-width: 95%;
-}
 .count__num {
   font-size: 2rem;
+}
+.count__full {
+  font-size: 1.6rem;
+  font-weight: 600;
 }
 .count__link {
   display: block;
@@ -166,7 +171,6 @@ body {
   font-size: 1.15rem;
   text-decoration: none;
 }
-
 /* -----progress----- */
 .progress {
     position: relative;
@@ -175,14 +179,11 @@ body {
     height: 5px;
     background-color: #ddd;
 }
-
-
 .progress__head,
 .progress__foot,
 .progress__begin {
     font-size: 0.9rem;
 }
-
 .progress__head,
 .progress__foot {
   position: absolute;
@@ -196,13 +197,11 @@ body {
   top: 21px;
   right: -31px;
 }
-
 .progress__begin {
     position: absolute;
     top: 21px;
     left: -27px;
 }
-
 .progress__bar {
     z-index: 0;
     height: 5px;
@@ -213,7 +212,6 @@ body {
     position: relative;
     bottom: 0px;
 }
-
 .progress:first-child::before {
     content: '';
     position: absolute;
@@ -224,11 +222,10 @@ body {
     height: 15px;
     margin-top: -3px;
     background-color: #fff;
-    border: 4px solid #ddd;
+    border: 4px solid #22A9CA;
     border-radius: 50%;
     box-sizing: border-box;
 }
-
 .progress::after {
     content: '';
     position: absolute;
@@ -318,7 +315,6 @@ body {
   mix-blend-mode: luminosity;
   box-sizing: border-box;
 }
-
 .desc__content {
   width: 480px;
   font-size: 1.2rem;
@@ -389,9 +385,13 @@ body {
 /* -----animate----- */
 .animate__title {
   opacity: 0;
+  transform: translateY(-50px);
+  transition: all 1s ease-in-out;
 }
 .animate__item {
   opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease-in-out;
 }
 /* -----wrap----- */
 .wrap {
@@ -467,8 +467,6 @@ body {
   font-weight: 600;
   margin-bottom: 70px;
 }
-
-
 .effort__box {
   width: 33.3333%;
   padding-top: 65px;
@@ -535,8 +533,6 @@ body {
 /* -----helper----- */
 .container {
   max-width: 1200px;
-  padding-left: 15px;
-  padding-right: 15px;
 }
 .mx-auto {
   margin-right: auto;
@@ -578,7 +574,6 @@ body {
   background-color: rgba(0, 0, 0, 0.555);
   color: #fff;
 }
-
 .btn-peace {
   background-color: #24B4D7;
 }
@@ -591,25 +586,6 @@ body {
   }
   30% {
     opacity: 0;
-  }
-}
-@keyframes slideDown {
-  0% {
-    opacity: 0;
-    transform: translateY(-50px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-@keyframes slideUp {
-  0% {
-    transform: translateY(50px);
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
   }
 }
 .fade {
@@ -627,14 +603,11 @@ body {
 .fade-3 {
   animation-delay: 15s;
 }
-.js-slide__down {
-  animation: slideDown 1s ease-in 0s both;
+.js-animate {
+  opacity: 1;
+  transform: translate(0);
 }
-.js-slide__up {
-  animation: slideUp 1s ease-in 0s both;
-}
-
-.js-progress::before,.js-progress::after{
+.js-progress::after{
   border-color: #24B4D7 !important;
 }
 .js-progress .progress__bar {
@@ -649,8 +622,6 @@ body {
 .js-nav {
   display: block !important;
 }
-
-
 .bg-white {
   background-color: #fff;
 }
@@ -674,6 +645,11 @@ body {
     width: 60%;
     left: 0;
   }
+  .main__head {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
 }
 @media screen and (max-width: 1024px) {
   .block + .block {
@@ -732,9 +708,6 @@ body {
   }
 }
 @media screen and (max-width: 768px) {
-  .container {
-    padding: 0;
-  }
   .intro {
     width: 87.7%;
     padding-top: 30px;
@@ -746,7 +719,9 @@ body {
   .intro__subTit {
     font-size: 25px;
   }
-  
+  .main__head {
+    padding: 0;
+  }
   .course__link {
     margin-top: 110px;
     margin-bottom: 0;
@@ -759,9 +734,6 @@ body {
     max-width: 85%;
     padding-left: 15px;
     padding-right: 15px;
-  }
-  .count {
-    align-items: stretch;
   }
   .count__head,
   .count__foot {
@@ -781,13 +753,6 @@ body {
   .block +.block {
     margin-left: 0;
   }
-  .progress {
-    width: 60px;
-  }
-  .progress-lg {
-    width: 120px;
-  }
-  
   .progress__head,
   .progress__foot,
   .progress__begin {
@@ -858,12 +823,15 @@ body {
   }
 }
 @media screen and (max-width: 576px) {
+  .logo {
+    width: 144px;
+    height: 40px;
+  }
   .header__ham {
     display: block;
   }
   .nav {
     display: none;
-    margin-top: -1px;
     width: 100%;
     position: absolute;
     top: 100%;
@@ -902,12 +870,6 @@ body {
   .course__title {
     font-size: 1.375rem;
   }
-  .progress {
-    width: 80px;
-  }
-  .progress-lg {
-    width: 160px;
-  }
   .card__imgContainer {
     height: 240px;
   }
@@ -938,11 +900,6 @@ body {
   .sec {
     font-size: 1.3rem;
   }
-  .count__head {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
 }
 @media screen and (max-width:375px) {
   .day,
@@ -950,5 +907,13 @@ body {
   .min,
   .sec {
     font-size: 1rem;
+  }
+  .desc__link,
+  .effort__link {
+    font-size: 1.9rem;
+  }
+  .btn-md {
+    padding-left: 25px;
+    padding-right: 25px;
   }
 }
