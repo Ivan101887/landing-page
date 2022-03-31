@@ -12,6 +12,7 @@ const elemFrontedPercent = document.querySelector('#FrontedPercent');
 const elemToTop = document.querySelector('#ToTop');
 const elemHeaderBarWrap = document.querySelector('.header__barWrap');
 let animateIndex = 0;
+let hasMenuEvent = false;
 let levels = 3;
 let data = [];
 setInit();
@@ -159,10 +160,10 @@ function ExceedDeadLine() {
 function setEvent() {
   window.addEventListener('scroll', scrollWin);
   window.addEventListener('keyup', closeModal);
-  document.addEventListener('click', closeMenu);
-  elemHeaderBarWrap.addEventListener('click', toggleMenu);
   document.querySelector('#MediaVideo').addEventListener('click', playVedio);
   elemModal.addEventListener('click', closeModal);
+  window.addEventListener('resize', ctrlMobileEvent)
+  ctrlMobileEvent();
 }
 /* -----事件監聽function----- */
 function scrollWin() {
@@ -185,7 +186,7 @@ function scrolltoShow() {
 }
 //顯示Iframe，動態產生影片路徑 
 function playVedio() {
-  elemModal.style.display = 'block';
+  elemModal.style.display = 'flex';
   document.body.style.overflow = 'hidden';
   document.querySelector('#ModalMedia').src = 'https://www.youtube.com/embed/syFyL9tONRA?';
 }
@@ -242,6 +243,25 @@ function toggleMenu() {
 function closeMenu(e) {
   if (e.target !== elemHeaderBarWrap) {
     elemNav.classList.remove('js-nav');
+  }
+}
+function isMobile() {
+  return window.innerWidth < 576;
+}
+function ctrlMobileEvent() {
+  if (isMobile()) {
+    if (!hasMenuEvent) {
+      document.addEventListener('click', closeMenu);
+      elemHeaderBarWrap.addEventListener('click', toggleMenu);
+      hasMenuEvent = true;
+    }
+  }
+  else {
+    if (hasMenuEvent) {
+      document.removeEventListener('click', closeMenu);
+      elemHeaderBarWrap.removeEventListener('click', toggleMenu);
+      hasMenuEvent = false;
+    }
   }
 }
 
